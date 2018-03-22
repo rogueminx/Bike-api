@@ -8,6 +8,15 @@ $(document).ready(function() {
   $('#searchForBikes').click(function() {
     event.preventDefault();
     const location = $('#location').val();
-    Bike(location);
-  });
+    let bikes = new Bike(location)
+    bikes.allBikes();
+  })
+  $(document).on('click', '#bikedetails', function(){
+    let bike_id = $(this).data('custom-value');
+    let bike = new Bike(location);
+    bike.bikeInfo(bike_id);
+    $('#showBikes').hide();
+    $("#bikeDetailPage").show();
+  })
+
 });
