@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 export function Bike(location) {
   const bikeKey = process.env.BIKE_INDEX_API_KEY;
 
@@ -7,7 +9,10 @@ export function Bike(location) {
       let bike = response.bikes[i].title;
       let bike_id = response.bikes[i].id;
       let bike_thumb = response.bikes[i].thumb;
-      $('#showBikes').append(`<li><a href="https://bikeindex.org:443/api/v3/bikes/${bike_id}."> ${bike} </a><img src ="${bike_thumb}"></li>`);
+      if (bike_thumb === null) {
+          bike_thumb = "images/bike-placeholder.png";
+        }
+      $('#showBikes').append(`<div class="row" id="resultrow"><div class="col-md-8"><li><a href="https://bikeindex.org/api/v3/bikes/${bike_id}"> ${bike} </a></div><div class="col-md-2"><img src ="${bike_thumb}"></li></div></div>`);
     }
     }).fail(function(error) {
       $('#showErrors').text(`There was an error processing your request: ${error.responseText}. Please try again.`);

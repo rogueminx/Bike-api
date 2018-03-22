@@ -1,4 +1,7 @@
-
+img {
+  width: 150px;
+  padding-left: 20px;
+}
 
 #header {
   font-family: 'Ubuntu', sans-serif;
@@ -8,4 +11,14 @@
 #subheader {
   font-family: 'Ubuntu', sans-serif;
   font-size: 20px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+#resultrow {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 1px solid black;
 }
