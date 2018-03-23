@@ -24,23 +24,24 @@ $(document).ready(function() {
           $('#showBikes').append(`<div class="row" id="resultrow"><div class="col-md-8"><li><span id="bikedetails" data-custom-value="${bike_id}"> ${bike} </span></div><div class="col-md-2"><img src ="${bike_thumb}"></li></div></div>`);
         }
       })
-    })
-    $(document).on('click', '#bikedetails', function(){
-      $('#showBikes').hide();
-      $('#bikeDetailPage').show();
-      let bike_id = $(this).data('custom-value');
-      let singlebike = new Bike();
-      let promiseSecond = singlebike.bikeInfo(bike_id);
-      promiseSecond.then(function(response) {
-        let results = JSON.parse(response);
-        let bike = results.bike.title;
-        let description = results.bike.description;
-        for (let i = 0; i < results.bike.public_images.length; i++) {
-          let image = results.bike.public_images[i].full;
-          $('.bikephotos').append(`<img src ="${image}">`);
-        }
-        $('.bikename').text(`${bike}`);
-        $('.bikedescription').text(`${description}`);
+      $(document).on('click', '#bikedetails', function(){
+        $('#showBikes').hide();
+        $('#bikeDetailPage').show();
+        let bike_id = $(this).data('custom-value');
+        let singlebike = new Bike();
+        let promiseSecond = singlebike.bikeInfo(bike_id);
+        promiseSecond.then(function(response) {
+          let results = JSON.parse(response);
+          let bike = results.bike.title;
+          let description = results.bike.description;
+          // let photos = results.bike.public_images;
+          // for(let i = 0; i < results.photos.length; i++) {
+          //   $('#bikephotos').append("<img src =" + photo[i] + "</img><br>");
+          // }
+          // $('#bikephotos').append(`<img src ="${photo}">`);
+          $('.bikename').text(`${bike}`);
+          $('#bikedescription').text(`${description}`);
+        })
       })
     })
   });
